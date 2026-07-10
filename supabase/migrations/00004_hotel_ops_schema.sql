@@ -62,6 +62,14 @@ CREATE TABLE hotel_staff (
   created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+CREATE TABLE shops (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  hotel_id UUID NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
+  name TEXT NOT NULL, description TEXT, image TEXT,
+  status SMALLINT DEFAULT 1,
+  created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 CREATE TABLE amenities (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   hotel_id UUID NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
@@ -75,14 +83,6 @@ CREATE TABLE food_items (
   shop_id UUID REFERENCES shops(id) ON DELETE SET NULL,
   name TEXT NOT NULL, description TEXT, price DECIMAL(10,2) NOT NULL,
   category TEXT, image TEXT, available SMALLINT DEFAULT 1,
-  created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE shops (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  hotel_id UUID NOT NULL REFERENCES hotels(id) ON DELETE CASCADE,
-  name TEXT NOT NULL, description TEXT, image TEXT,
-  status SMALLINT DEFAULT 1,
   created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
