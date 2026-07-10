@@ -8,14 +8,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Plus, MessageSquare } from "lucide-react"
-import type { Database } from "@/types/database"
-
-type Ticket = Database["public"]["Tables"]["support_tickets"]["Row"]
+import type { SupportTicketRow } from "@/types/database"
 
 export default function TicketsPage() {
   const router = useRouter()
   const supabase = createClient()
-  const [tickets, setTickets] = useState<Ticket[]>([])
+  const [tickets, setTickets] = useState<SupportTicketRow[]>([])
   const [showForm, setShowForm] = useState(false)
   const [subject, setSubject] = useState("")
   const [message, setMessage] = useState("")
