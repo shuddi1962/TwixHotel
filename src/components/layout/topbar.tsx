@@ -1,13 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import type { User } from "@supabase/supabase-js"
 import { createClient } from "@/lib/supabase/client"
 import { getInitials } from "@/lib/utils"
 import { Bell, ChevronDown } from "lucide-react"
 
 export function Topbar() {
   const supabase = createClient()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user))
