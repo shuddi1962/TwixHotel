@@ -21,23 +21,24 @@ export default function ProfilePage() {
     })
   }, [router, supabase])
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  if (!user) return null
+
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    const form = e.target as HTMLFormElement
-    const data = Object.fromEntries(new FormData(form))
-    await supabase.from("users").update({
-      firstname: data.firstname,
-      lastname: data.lastname,
-      mobile: data.mobile,
-      address: data.address,
-      city: data.city,
-      country: data.country,
-    }).eq("id", user.id)
+    const form = new FormData(e.currentTarget)
+    await supabase
+      .from("users")
+      .update({
+        firstname: form.get("firstname") as string,
+        lastname: form.get("lastname") as string,
+        mobile: form.get("mobile") as string,
+        address: form.get("address") as string,
+        city: form.get("city") as string,
+        country: form.get("country") as string,
+      }).eq("id", user.id)
     setLoading(false)
   }
-
-  if (!user) return null
 
   return (
     <div className="max-w-2xl mx-auto p-6">
