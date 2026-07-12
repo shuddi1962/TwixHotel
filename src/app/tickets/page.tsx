@@ -49,7 +49,7 @@ export default function TicketsPage() {
   }
 
   const statusBadge = (s: number) => {
-    const map: Record<number, "success" | "warning" | "danger" | "secondary"> = { 0: "warning", 1: "success", 2: "info", 3: "secondary" }
+    const map: Record<number, "success" | "warning" | "danger" | "info" | "secondary"> = { 0: "warning", 1: "success", 2: "info", 3: "secondary" }
     return map[s] || "secondary"
   }
   const statusLabel = ["Open", "Answered", "Replied", "Closed"]
