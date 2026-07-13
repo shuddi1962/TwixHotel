@@ -35,7 +35,7 @@ export function SiteHeader({ hotelName }: { hotelName: string }) {
           {hotelName}
         </Link>
         <div className="hidden md:flex items-center gap-10">
-          <a href="/" className="text-primary font-bold border-b-2 border-primary pb-1 text-[14px] leading-[20px] tracking-widest font-semibold">Home</a>
+          <Link href="/" className="text-primary font-bold border-b-2 border-primary pb-1 text-[14px] leading-[20px] tracking-widest font-semibold">Home</Link>
           {NAV_LINKS.slice(1).map((l) => (
             <a key={l.href} href={l.href} className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">
               {l.label}
