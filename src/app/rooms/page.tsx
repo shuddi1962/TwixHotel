@@ -79,10 +79,10 @@ export default function RoomsPage() {
           <Link href="/" className="font-heading text-[32px] leading-[40px] text-primary tracking-tight">{hotelName}</Link>
           <div className="hidden md:flex items-center gap-8">
             <Link href="/rooms" className="text-primary font-bold border-b-2 border-primary pb-1 text-[14px] leading-[20px] tracking-widest font-semibold">Rooms</Link>
-            <a href="/#dining" className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">Dining</a>
-            <a href="/#facilities" className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">Facilities</a>
+            <Link href="/#dining" className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">Dining</Link>
+            <Link href="/#facilities" className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">Facilities</Link>
           </div>
-          <a href="/rooms" className="bg-primary-container text-on-primary text-[14px] leading-[20px] tracking-widest font-semibold px-6 py-3 hover:opacity-80 transition-opacity">Book Now</a>
+          <Link href="/rooms" className="bg-primary-container text-on-primary text-[14px] leading-[20px] tracking-widest font-semibold px-6 py-3 hover:opacity-80 transition-opacity">Book Now</Link>
         </div>
       </nav>
 
@@ -279,9 +279,9 @@ export default function RoomsPage() {
           <div>
             <h5 className="text-[20px] leading-[28px] font-semibold mb-8 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-px after:bg-warm-bronze">Quick Links</h5>
             <ul className="space-y-4 text-soft-cream/60 text-sm">
-              <li><a className="hover:text-warm-bronze transition-colors" href="/rooms">Our Suites</a></li>
-              <li><a className="hover:text-warm-bronze transition-colors" href="/#dining">Dining Experiences</a></li>
-              <li><a className="hover:text-warm-bronze transition-colors" href="/#facilities">Spa & Wellness</a></li>
+              <li><Link className="hover:text-warm-bronze transition-colors" href="/rooms">Our Suites</Link></li>
+              <li><Link className="hover:text-warm-bronze transition-colors" href="/#dining">Dining Experiences</Link></li>
+              <li><Link className="hover:text-warm-bronze transition-colors" href="/#facilities">Spa & Wellness</Link></li>
               <li><a className="hover:text-warm-bronze transition-colors" href="#">Contact Us</a></li>
             </ul>
           </div>
