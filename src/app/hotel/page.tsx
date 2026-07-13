@@ -1,9 +1,11 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { StatCard } from "@/components/ui/stat-card"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { DoorOpen, BookOpen, Users, DollarSign, CalendarDays, TrendingUp, Activity } from "lucide-react"
+import { DoorOpen, BookOpen, Users, DollarSign, CalendarDays, TrendingUp, Activity, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import { TodaysSalesCard } from "@/components/hotel/todays-sales-card"
+import { LiveSalesFeed } from "@/components/hotel/live-sales-feed"
 
 export default async function HotelDashboard() {
   const supabase = await createServerSupabaseClient()
@@ -45,11 +47,12 @@ export default async function HotelDashboard() {
         <p className="text-sm text-muted mt-1">Welcome back! Here&apos;s your hotel overview.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <StatCard title="Total Rooms" value={roomCount ?? 0} icon={<DoorOpen className="w-5 h-5" />} />
         <StatCard title="Total Bookings" value={bookingCount ?? 0} icon={<BookOpen className="w-5 h-5" />} />
         <StatCard title="Guests" value={guestCount ?? 0} icon={<Users className="w-5 h-5" />} />
         <StatCard title="Today&apos;s Revenue" value={`$${todayRevenue.toFixed(2)}`} icon={<DollarSign className="w-5 h-5" />} />
+        <TodaysSalesCard hotelId={hotel.id} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -85,28 +88,12 @@ export default async function HotelDashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-primary" />
-              Quick Actions
+              <ShoppingCart className="w-5 h-5 text-primary" />
+              Live Sales Feed
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: "Manage Rooms", href: "/hotel/rooms", icon: DoorOpen },
-                { label: "New Booking", href: "/hotel/bookings", icon: BookOpen },
-                { label: "View Guests", href: "/hotel/guests", icon: Users },
-                { label: "Staff", href: "/hotel/staff", icon: Activity },
-              ].map((action) => {
-                const Icon = action.icon
-                return (
-                  <Link key={action.href} href={action.href}
-                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:shadow-sm transition-shadow">
-                    <Icon className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-medium">{action.label}</span>
-                  </Link>
-                )
-              })}
-            </div>
+            <LiveSalesFeed hotelId={hotel.id} />
           </CardContent>
         </Card>
       </div>

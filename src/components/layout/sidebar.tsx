@@ -8,7 +8,8 @@ import {
   Settings, Ticket, PiggyBank, BarChart3, Plug, Palette,
   Globe, Shield, Menu, X, LogOut, Hotel, DoorOpen,
   BookOpen, UserPlus, Utensils, Store, SprayCan, Star,
-  Receipt, Package
+  Receipt, Package, ShoppingCart, ClipboardList,
+  MonitorSmartphone, Activity, Clock, TrendingUp
 } from "lucide-react"
 import { useState } from "react"
 import { createClient } from "@/lib/supabase/client"
@@ -44,10 +45,15 @@ const hotelLinks = [
   { href: "/hotel/staff", label: "Staff", icon: Users },
   { href: "/hotel/food", label: "Food Menu", icon: Utensils },
   { href: "/hotel/shops", label: "Shops", icon: Store },
+  { href: "/hotel/shops/pos", label: "POS Terminal", icon: ShoppingCart },
+  { href: "/hotel/inventory", label: "Inventory", icon: ClipboardList },
+  { href: "/hotel/kds", label: "KDS", icon: MonitorSmartphone },
   { href: "/hotel/cleaning", label: "Cleaning", icon: SprayCan },
   { href: "/hotel/invoices", label: "Invoices", icon: Receipt },
   { href: "/hotel/reviews", label: "Reviews", icon: Star },
   { href: "/hotel/reports", label: "Reports", icon: BarChart3 },
+  { href: "/hotel/reports/sales", label: "Sales Reports", icon: TrendingUp },
+  { href: "/hotel/activity", label: "Activity", icon: Activity },
   { href: "/hotel/settings", label: "Settings", icon: Settings },
 ]
 

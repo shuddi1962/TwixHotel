@@ -1,5 +1,6 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
+import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -32,7 +33,14 @@ export default async function ShopsPage() {
                 <TableCell className="font-medium">{shop.name}</TableCell>
                 <TableCell className="text-muted max-w-xs truncate">{shop.description || "—"}</TableCell>
                 <TableCell><Badge variant={shop.status === 1 ? "success" : "danger"}>{shop.status === 1 ? "Open" : "Closed"}</Badge></TableCell>
-                <TableCell><Button variant="secondary" size="sm">Manage</Button></TableCell>
+                <TableCell>
+                  <div className="flex gap-1">
+                    <Button variant="secondary" size="sm">Manage</Button>
+                    <Link href={`/hotel/shops/${shop.id}/pos`}>
+                      <Button size="sm">POS</Button>
+                    </Link>
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
