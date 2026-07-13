@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import { Inter, Cormorant_Garamond } from "next/font/google"
+import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-const displayFont = Cormorant_Garamond({
+const displayFont = Playfair_Display({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-hg-display",
 })
 

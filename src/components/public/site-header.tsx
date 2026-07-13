@@ -15,35 +15,30 @@ const NAV_LINKS = [
 export function SiteHeader({ hotelName }: { hotelName: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 60)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const isTransparent = !scrolled
-
   return (
     <header
       className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
       style={{
-        backgroundColor: mounted
-          ? isTransparent
-            ? "transparent"
-            : "rgba(10,10,10,0.92)"
-          : "transparent",
-        borderBottom: mounted && !isTransparent ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+        backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--vg-line)" : "1px solid transparent",
+        boxShadow: scrolled ? "0 1px 4px rgba(0,0,0,0.04)" : "none",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-2xl tracking-wide transition-opacity"
-          style={{ color: mounted && isTransparent ? "white" : "var(--vg-ivory)", opacity: mounted ? 1 : 0 }}
+          className="font-display text-2xl tracking-wide transition-colors"
+          style={{ color: "var(--vg-ivory)" }}
         >
           {hotelName}
         </Link>
@@ -54,9 +49,7 @@ export function SiteHeader({ hotelName }: { hotelName: string }) {
               key={l.href}
               href={l.href}
               className="text-sm tracking-wide transition-colors"
-              style={{
-                color: mounted && isTransparent ? "rgba(255,255,255,0.7)" : "var(--vg-sage)",
-              }}
+              style={{ color: "var(--vg-sage)" }}
             >
               {l.label}
             </a>
@@ -71,7 +64,7 @@ export function SiteHeader({ hotelName }: { hotelName: string }) {
 
         <button
           className="lg:hidden p-2"
-          style={{ color: mounted && isTransparent ? "white" : "var(--vg-ivory)", opacity: mounted ? 1 : 0 }}
+          style={{ color: "var(--vg-ivory)" }}
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -86,7 +79,7 @@ export function SiteHeader({ hotelName }: { hotelName: string }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             className="lg:hidden overflow-hidden"
-            style={{ backgroundColor: "var(--vg-bg)", borderTop: "1px solid var(--vg-line)" }}
+            style={{ backgroundColor: "var(--vg-surface)", borderTop: "1px solid var(--vg-line)" }}
           >
             <div className="px-6 py-6 flex flex-col gap-5">
               {NAV_LINKS.map((l) => (

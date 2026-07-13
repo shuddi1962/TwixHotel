@@ -10,20 +10,20 @@ import { RoomCard } from "@/components/public/room-card"
 export const revalidate = 60
 
 const NIGERIAN_DISHES = [
-  { name: "Jollof Rice", desc: "Smoky tomato rice with peppers & spices", seed: "jollof-rice" },
-  { name: "Egusi Soup", desc: "Melon seed stew with spinach & assorted meat", seed: "egusi-soup" },
-  { name: "Suya Skewers", desc: "Spiced grilled beef with peanut-chili crust", seed: "suya-skewers" },
-  { name: "Pounded Yam & Ogbono", desc: "Smooth swallow with wild mango seed soup", seed: "pounded-yam" },
-  { name: "Moi Moi", desc: "Steamed bean pudding with peppers & eggs", seed: "moi-moi" },
-  { name: "Pepper Soup", desc: "Aromatic broth with goat meat & herbs", seed: "pepper-soup" },
-  { name: "Fried Rice", desc: "Nigerian party fried rice with vegetables", seed: "fried-rice" },
-  { name: "Small Chops", desc: "Assorted appetizers — puff puff, samosa, spring rolls", seed: "small-chops" },
+  { name: "Jollof Rice", desc: "Smoky tomato rice with peppers & spices", image: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80" },
+  { name: "Egusi Soup", desc: "Melon seed stew with spinach & assorted meat", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" },
+  { name: "Suya Skewers", desc: "Spiced grilled beef with peanut-chili crust", image: "https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80" },
+  { name: "Pounded Yam & Ogbono", desc: "Smooth swallow with wild mango seed soup", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" },
+  { name: "Moi Moi", desc: "Steamed bean pudding with peppers & eggs", image: "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=600&q=80" },
+  { name: "Pepper Soup", desc: "Aromatic broth with goat meat & herbs", image: "https://images.unsplash.com/photo-1607305387299-a3d9611cd469?w=600&q=80" },
+  { name: "Fried Rice", desc: "Nigerian party fried rice with vegetables", image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80" },
+  { name: "Small Chops", desc: "Assorted appetizers \u2014 puff puff, samosa, spring rolls", image: "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=600&q=80" },
 ]
 
 const FACILITIES = [
-  { title: "Infinity Pool & Wellness", image: "pool-luxury", desc: "Overlooking the city skyline" },
-  { title: "Spa & Hammam", image: "spa-treatment", desc: "Traditional and modern therapies" },
-  { title: "Executive Lounge", image: "lounge-bar", desc: "With panoramic views" },
+  { title: "Infinity Pool & Wellness", image: "https://images.unsplash.com/photo-1576013551627-0cc20b962cbb?w=700&q=80", desc: "Overlooking the city skyline" },
+  { title: "Spa & Hammam", image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=80", desc: "Traditional and modern therapies" },
+  { title: "Executive Lounge", image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=80", desc: "With panoramic views" },
 ]
 
 export default async function HomePage() {
@@ -56,7 +56,7 @@ export default async function HomePage() {
   ])
 
   const currency = hotel.currency_symbol || "$"
-  const heroImage = hotel.cover_image || "https://picsum.photos/seed/luxury-suite-hero/1920/1200"
+  const heroImage = hotel.cover_image || "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1920&q=85"
 
   return (
     <div className="vg">
@@ -72,19 +72,20 @@ export default async function HomePage() {
         <div className="hero-content">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <Reveal>
-              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/50 mb-6">
-                <span className="w-8 h-px bg-white/30" />
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-6" style={{ color: "var(--vg-gold)" }}>
+                <span className="w-8 h-px" style={{ background: "var(--vg-gold)" }} />
                 {hotel.city || "Lagos"}, {hotel.country || "Nigeria"}
               </div>
             </Reveal>
             <Reveal delay={0.08}>
+              <div className="hero-line" />
               <h1 className="hero-title">
                 {hotel.name}
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="hero-sub">
-                {hotel.description || "Where understated luxury meets genuine hospitality — every stay becomes a story worth telling."}
+                {hotel.description || "Where understated luxury meets genuine hospitality \u2014 every stay becomes a story worth telling."}
               </p>
             </Reveal>
             <Reveal delay={0.24}>
@@ -98,21 +99,20 @@ export default async function HomePage() {
               </div>
             </Reveal>
 
-            {/* Floating booking bar */}
             <Reveal delay={0.32}>
               <div className="hero-booking mt-10">
                 <div className="grid">
-                  <div className="px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.06)" }}>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mb-1">Check-in — Check-out</p>
-                    <p className="text-sm text-white">Select dates</p>
+                  <div className="field">
+                    <p>Check-in \u2014 Check-out</p>
+                    <p>Select dates</p>
                   </div>
-                  <div className="px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.06)" }}>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mb-1">Adults</p>
-                    <p className="text-sm text-white">2</p>
+                  <div className="field">
+                    <p>Adults</p>
+                    <p>2</p>
                   </div>
-                  <div className="px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.06)" }}>
-                    <p className="text-[11px] uppercase tracking-wider text-white/40 mb-1">Children</p>
-                    <p className="text-sm text-white">0</p>
+                  <div className="field">
+                    <p>Children</p>
+                    <p>0</p>
                   </div>
                   <a href="#rooms" className="btn-gold justify-center px-6 py-3 rounded-xl w-full">
                     Check Availability
@@ -131,7 +131,7 @@ export default async function HomePage() {
             <Reveal>
               <div className="rounded-2xl overflow-hidden">
                 <Image
-                  src="https://picsum.photos/seed/hotel-lobby-luxury/900/1100"
+                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=85"
                   alt={hotel.name}
                   width={900}
                   height={1100}
@@ -144,12 +144,12 @@ export default async function HomePage() {
               <h2 className="section-title">A New Standard in Hospitality</h2>
               <p className="section-desc mb-6">
                 At {hotel.name}, we redefine what it means to stay. Every corner is considered,
-                every detail intentional — from the whispered hum of the city below to the silence
+                every detail intentional \u2014 from the whispered hum of the city below to the silence
                 of a suite designed for deep rest.
               </p>
               <p className="section-desc mb-8">
                 Founded with a passion for genuine hospitality, we believe the best stays are
-                the ones where you forget you ever left home — and remember the feeling long after.
+                the ones where you forget you ever left home \u2014 and remember the feeling long after.
               </p>
               <a href="#rooms" className="btn-gold">
                 Discover More <ArrowRight className="w-4 h-4" />
@@ -169,7 +169,7 @@ export default async function HomePage() {
                 <h2 className="section-title max-w-xl">Every room has a point of view</h2>
               </div>
               <p className="section-desc text-sm max-w-sm">
-                From intimate standard rooms to sprawling penthouses — each space is designed around light, quiet, and a proper night&apos;s sleep.
+                From intimate standard rooms to sprawling penthouses \u2014 each space is designed around light, quiet, and a proper night&apos;s sleep.
               </p>
             </div>
           </Reveal>
@@ -204,7 +204,7 @@ export default async function HomePage() {
                 <span className="section-tag">Amenities</span>
                 <h2 className="section-title">Everything you need</h2>
                 <p className="section-desc mx-auto">
-                  From arrival to departure — every service is designed to make your stay seamless and memorable.
+                  From arrival to departure \u2014 every service is designed to make your stay seamless and memorable.
                 </p>
               </div>
             </Reveal>
@@ -212,8 +212,8 @@ export default async function HomePage() {
               {amenities.map((a, i) => (
                 <Reveal key={a.id} delay={(i % 8) * 0.05}>
                   <div className="service-card">
-                    <p className="text-3xl mb-3">{["🛎️", "🥂", "🍳", "🍽️", "💆", "🧸", "🏊", "🎱", "🧊", "☕", "👔", "🚙"][i % 12]}</p>
-                    <p className="text-sm font-medium text-white/90">{a.name}</p>
+                    <p className="text-3xl mb-3">{["\uD83D\uDCED\uFE0F", "\uD83E\uDD42", "\uD83C\uDF73", "\uD83C\uDF7D\uFE0F", "\uD83D\uDC86", "\uD83E\uDDF8", "\uD83C\uDFCA", "\uD83C\uDFB1", "\uD83E\uDDCA", "\u2615", "\uD83D\uDC54", "\uD83D\uDE99"][i % 12]}</p>
+                    <p className="text-sm font-medium" style={{ color: "var(--vg-ivory)" }}>{a.name}</p>
                   </div>
                 </Reveal>
               ))}
@@ -230,7 +230,7 @@ export default async function HomePage() {
               <span className="section-tag">Facilities</span>
               <h2 className="section-title">Designed for living</h2>
               <p className="section-desc mx-auto">
-                More than amenities — spaces that invite you to linger, connect, and recharge.
+                More than amenities \u2014 spaces that invite you to linger, connect, and recharge.
               </p>
             </div>
           </Reveal>
@@ -239,10 +239,10 @@ export default async function HomePage() {
               <Reveal key={f.title} delay={i * 0.1}>
                 <div className="facility-card">
                   <div className="facility-card__image">
-                    <Image src={`https://picsum.photos/seed/${f.image}/700/500`} alt={f.title} fill sizes="(max-width: 768px) 100vw, 33vw" />
+                    <Image src={f.image} alt={f.title} fill sizes="(max-width: 768px) 100vw, 33vw" />
                   </div>
                   <div className="facility-card__title">
-                    <p className="text-xs text-white/40 tracking-widest uppercase mb-1">{f.desc}</p>
+                    <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "var(--vg-sage)" }}>{f.desc}</p>
                     {f.title}
                   </div>
                 </div>
@@ -252,7 +252,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* =================== DINING — NIGERIAN CUISINE =================== */}
+      {/* =================== DINING - NIGERIAN CUISINE =================== */}
       <section id="dining" className="section-padding">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
@@ -262,7 +262,7 @@ export default async function HomePage() {
                 <h2 className="section-title max-w-xl">Taste of Nigeria</h2>
               </div>
               <p className="section-desc text-sm max-w-sm">
-                From the smoky heat of party jollof to the comforting depth of egusi — our chefs
+                From the smoky heat of party jollof to the comforting depth of egusi \u2014 our chefs
                 honour every regional tradition with ingredient-led cooking and a modern hand.
               </p>
             </div>
@@ -271,7 +271,7 @@ export default async function HomePage() {
             {NIGERIAN_DISHES.map((dish, i) => (
               <Reveal key={dish.name} delay={(i % 8) * 0.06}>
                 <div className="food-card">
-                  <Image src={`https://picsum.photos/seed/${dish.seed}/600/600`} alt={dish.name} fill sizes="(max-width: 768px) 50vw, 25vw" />
+                  <Image src={dish.image} alt={dish.name} fill sizes="(max-width: 768px) 50vw, 25vw" />
                   <div className="food-card__label">
                     <p className="font-display text-base mb-0.5">{dish.name}</p>
                     <p className="text-xs text-white/60">{dish.desc}</p>
@@ -292,7 +292,7 @@ export default async function HomePage() {
                 <span className="section-tag">Guest Stories</span>
                 <h2 className="section-title">What they remember</h2>
                 <p className="section-desc mx-auto">
-                  Not just reviews — the moments that turn a stay into a memory.
+                  Not just reviews \u2014 the moments that turn a stay into a memory.
                 </p>
               </div>
             </Reveal>
@@ -301,16 +301,16 @@ export default async function HomePage() {
                 <Reveal key={r.id} delay={i * 0.08}>
                   <div className="testimonial-card">
                     <div className="stars mb-3">
-                      {"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)}
+                      {"\u2605".repeat(r.rating)}{"\u2606".repeat(5 - r.rating)}
                     </div>
-                    <p className="text-sm leading-relaxed text-white/80 mb-6">&ldquo;{r.comment}&rdquo;</p>
+                    <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--vg-sage)" }}>&ldquo;{r.comment}&rdquo;</p>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full overflow-hidden bg-white/10 flex items-center justify-center text-sm font-medium text-white/60">
+                      <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center text-sm font-medium" style={{ background: "var(--vg-bg)", color: "var(--vg-sage)" }}>
                         {(r.guest_name || "G")[0]}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-white/90">{r.guest_name || "Guest"}</p>
-                        <p className="text-xs text-white/40">Valued guest</p>
+                        <p className="text-sm font-medium" style={{ color: "var(--vg-ivory)" }}>{r.guest_name || "Guest"}</p>
+                        <p className="text-xs" style={{ color: "var(--vg-sage)" }}>Valued guest</p>
                       </div>
                     </div>
                   </div>
