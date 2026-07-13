@@ -1,17 +1,17 @@
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Plus_Jakarta_Sans, EB_Garamond } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
-const displayFont = Playfair_Display({
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] })
+const garamond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-hg-display",
+  variable: "--font-display",
 })
 
 export const metadata: Metadata = {
-  title: "Grand Luxury Hotel",
-  description: "A refined stay — rooms, bar, pool, and everything in between.",
+  title: "TwixHotel - Glocal Luxury in Every Detail",
+  description: "Where heritage meets unrivaled elegance, creating an exquisite haven for your ultimate relaxation in the heart of the city.",
 }
 
 export default function RootLayout({
@@ -20,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${displayFont.variable}`}>{children}</body>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" />
+      </head>
+      <body className={`${jakarta.className} ${garamond.variable}`}>{children}</body>
     </html>
   )
 }

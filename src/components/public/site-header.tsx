@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -14,92 +12,46 @@ const NAV_LINKS = [
 
 export function SiteHeader({ hotelName }: { hotelName: string }) {
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    const onScroll = () => setScrolled(window.scrollY > 50)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
-    <header
-      className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
+    <nav
+      id="top-nav"
+      className="fixed top-0 w-full z-50 transition-all duration-300 glass-nav h-20 flex items-center"
       style={{
-        backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--vg-line)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 1px 4px rgba(0,0,0,0.04)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(33,37,41,0.05)" : "1px solid transparent",
+        backgroundColor: scrolled ? "rgba(253,251,247,0.95)" : "transparent",
+        boxShadow: scrolled ? "0 1px 3px rgba(0,0,0,0.04)" : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-2xl tracking-wide transition-colors"
-          style={{ color: "var(--vg-ivory)" }}
-        >
+      <div className="flex justify-between items-center w-full px-5 md:px-6 max-w-[1280px] mx-auto">
+        <Link href="/" className="font-heading text-[32px] leading-[40px] font-semibold text-primary">
           {hotelName}
         </Link>
-
-        <nav className="hidden lg:flex items-center gap-9">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm tracking-wide transition-colors"
-              style={{ color: "var(--vg-sage)" }}
-            >
+        <div className="hidden md:flex items-center gap-10">
+          <a href="/" className="text-primary font-bold border-b-2 border-primary pb-1 text-[14px] leading-[20px] tracking-widest font-semibold">Home</a>
+          {NAV_LINKS.slice(1).map((l) => (
+            <a key={l.href} href={l.href} className="text-on-surface-variant hover:text-primary transition-colors text-[14px] leading-[20px] tracking-widest font-semibold">
               {l.label}
             </a>
           ))}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="#rooms" className="btn-gold text-xs px-5 py-2.5">
+        </div>
+        <div className="flex items-center gap-6">
+          <button className="hidden md:flex items-center gap-2 text-on-surface-variant text-[14px] leading-[20px] tracking-widest font-semibold">
+            <span className="material-symbols-outlined text-[20px]">language</span>
+            English
+          </button>
+          <a href="#rooms" className="bg-warm-bronze text-white px-8 py-3 text-[14px] leading-[20px] tracking-widest font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-200">
             Book Now
           </a>
         </div>
-
-        <button
-          className="lg:hidden p-2"
-          style={{ color: "var(--vg-ivory)" }}
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden overflow-hidden"
-            style={{ backgroundColor: "var(--vg-surface)", borderTop: "1px solid var(--vg-line)" }}
-          >
-            <div className="px-6 py-6 flex flex-col gap-5">
-              {NAV_LINKS.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-base"
-                  style={{ color: "var(--vg-ivory)" }}
-                >
-                  {l.label}
-                </a>
-              ))}
-              <a href="#rooms" onClick={() => setOpen(false)} className="btn-gold w-full justify-center">
-                Book Now
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+    </nav>
   )
 }
