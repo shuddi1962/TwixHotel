@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "#rooms", label: "Rooms" },
+  { href: "/rooms", label: "Rooms" },
   { href: "#dining", label: "Dining" },
   { href: "#facilities", label: "Facilities" },
 ]
@@ -47,9 +47,9 @@ export function SiteHeader({ hotelName }: { hotelName: string }) {
             <span className="material-symbols-outlined text-[20px]">language</span>
             English
           </button>
-          <a href="#rooms" className="bg-warm-bronze text-white px-8 py-3 text-[14px] leading-[20px] tracking-widest font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-200">
+          <Link href="/rooms" className="bg-warm-bronze text-white px-8 py-3 text-[14px] leading-[20px] tracking-widest font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-200">
             Book Now
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

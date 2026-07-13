@@ -260,10 +260,10 @@ export default async function HomePage() {
             ))}
           </div>
           <div className="mt-16 text-center">
-            <a className="inline-flex items-center gap-3 bg-deep-navy text-white px-12 py-5 text-[14px] leading-[20px] tracking-widest font-semibold uppercase hover:bg-charcoal transition-all" href="#">
+            <Link className="inline-flex items-center gap-3 bg-deep-navy text-white px-12 py-5 text-[14px] leading-[20px] tracking-widest font-semibold uppercase hover:bg-charcoal transition-all" href="/rooms">
               Explore All Suites
               <span className="material-symbols-outlined">arrow_forward</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

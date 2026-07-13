@@ -56,7 +56,7 @@ export function SiteFooter({ hotelName, description, address, city, country, ema
         <div>
           <h5 className="text-[20px] leading-[28px] font-semibold mb-8 relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-px after:bg-warm-bronze">Quick Links</h5>
           <ul className="space-y-4 text-soft-cream/60 text-sm">
-            <li><a className="hover:text-warm-bronze transition-colors" href="#rooms">Rooms &amp; Suites</a></li>
+            <li><a className="hover:text-warm-bronze transition-colors" href="/rooms">Rooms &amp; Suites</a></li>
             <li><a className="hover:text-warm-bronze transition-colors" href="#dining">Dining Experiences</a></li>
             <li><a className="hover:text-warm-bronze transition-colors" href="#facilities">Spa &amp; Wellness</a></li>
             <li><a className="hover:text-warm-bronze transition-colors" href="#">Our Heritage</a></li>
