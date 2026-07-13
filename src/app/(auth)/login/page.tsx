@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Mail, Lock, LogIn, Eye, EyeOff } from "lucide-react"
+import { LogIn, Eye, EyeOff } from "lucide-react"
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const supabase = createClient()
@@ -28,12 +28,8 @@ export default function LoginPage() {
       setLoading(false)
       return
     }
-    const { data: profile } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", data.user.id)
-      .single()
-    const redirect = searchParams.get("redirect") || (profile?.role === "super_admin" ? "/admin" : "/hotel")
+    const role = data.user.user_metadata?.role as string | undefined
+    const redirect = searchParams.get("redirect") || (role === "super_admin" ? "/admin" : "/hotel")
     router.push(redirect)
     router.refresh()
   }
@@ -50,7 +46,6 @@ export default function LoginPage() {
           label="Email"
           type="email"
           placeholder="admin@example.com"
-          icon={Mail}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -91,5 +86,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="bg-white rounded-xl shadow-sm border border-border p-8 text-center text-muted">Loading...</div>}>
+      <LoginForm />
+    </Suspense>
   )
 }

@@ -2,14 +2,20 @@ const { Client } = require('pg')
 const fs = require('fs')
 const path = require('path')
 
-// Direct connection (might require network with direct DB access)
+// Direct connection (requires DB DNS + password from env or .env.local)
 const config = {
-  host: 'db.bssaasbcxooihfjxbnzn.supabase.co',
-  port: 5432,
-  database: 'postgres',
-  user: 'postgres',
-  password: '07039Suco2004$',
+  host: process.env.SUPABASE_DB_HOST || 'db.bssaasbcxooihfjxbnzn.supabase.co',
+  port: parseInt(process.env.SUPABASE_DB_PORT || '5432', 10),
+  database: process.env.SUPABASE_DB_NAME || 'postgres',
+  user: process.env.SUPABASE_DB_USER || 'postgres',
+  password: process.env.SUPABASE_DB_PASSWORD,
   ssl: { rejectUnauthorized: false }
+}
+
+if (!config.password) {
+  console.error('ERROR: SUPABASE_DB_PASSWORD env var is required for direct DB migration.')
+  console.error('Set it in your environment or .env.local (do NOT commit).')
+  process.exit(1)
 }
 
 async function migrate() {

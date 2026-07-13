@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StatCard } from "@/components/ui/stat-card"
 import { DollarSign, BookOpen, TrendingUp } from "lucide-react"
+import { RevenueChart } from "./revenue-chart"
 
 export default async function HotelReportsPage() {
   const supabase = await createServerSupabaseClient()
@@ -17,6 +18,14 @@ export default async function HotelReportsPage() {
   const confirmed = (bookings || []).filter((b) => b.status === "confirmed" || b.status === "checked_in").length
   const cancelled = (bookings || []).filter((b) => b.status === "cancelled").length
 
+  const monthlyData = (bookings || []).reduce<Record<string, number>>((acc, b) => {
+    const month = new Date(b.created_at).toLocaleString("default", { month: "short", year: "2-digit" })
+    acc[month] = (acc[month] || 0) + Number(b.total_amount)
+    return acc
+  }, {})
+
+  const chartData = Object.entries(monthlyData).map(([month, revenue]) => ({ month, revenue }))
+
   return (
     <div className="space-y-6">
       <div><h1 className="text-2xl font-bold text-dark">Reports</h1><p className="text-sm text-muted mt-1">Analytics and performance metrics</p></div>
@@ -28,7 +37,7 @@ export default async function HotelReportsPage() {
       <Card>
         <CardHeader><CardTitle>Monthly Revenue</CardTitle></CardHeader>
         <CardContent>
-          <p className="text-sm text-muted">Revenue chart will display here. Integration with recharts available.</p>
+          <RevenueChart data={chartData} currency={sym} />
         </CardContent>
       </Card>
     </div>
